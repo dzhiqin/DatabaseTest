@@ -6,6 +6,7 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 
 public class DatabaseProvider extends ContentProvider{
 
@@ -18,10 +19,10 @@ public class DatabaseProvider extends ContentProvider{
 	private MyDatabaseHelper dbHelper;
 	static{
 		uriMatcher=new UriMatcher(UriMatcher.NO_MATCH);
-		uriMatcher.addURI(AUTHORITY, "book",BOOK_DIR);
-		uriMatcher.addURI(AUTHORITY, "book/#",BOOK_ITEM);
-		uriMatcher.addURI(AUTHORITY, "category2",CATEGORY_DIR);
-		uriMatcher.addURI(AUTHORITY, "category2/#",CATEGORY_ITEM);
+		uriMatcher.addURI(AUTHORITY, "Book",BOOK_DIR);
+		uriMatcher.addURI(AUTHORITY, "Book/#",BOOK_ITEM);
+		uriMatcher.addURI(AUTHORITY, "Category2",CATEGORY_DIR);
+		uriMatcher.addURI(AUTHORITY, "Category2/#",CATEGORY_ITEM);
 	}
 	@Override
 	public boolean onCreate() {
@@ -92,6 +93,7 @@ public class DatabaseProvider extends ContentProvider{
 			uriReturn=Uri.parse("content://"+AUTHORITY+"/category/"+newCategoryId);
 			break;
 		}
+		Log.v("test", "uriReturn="+uriReturn);
 		return uriReturn;
 	}
 
